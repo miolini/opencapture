@@ -4,8 +4,8 @@ OSX_OPTS=-F/System/Library/Frameworks -framework Foundation -framework QTKit
 
 all:
 	$(CC) $(OPTS) -c -fPIC QTKitCapture.m -o QTKitCapture.o
-	$(CC) $(OSX_OPTS) -dynamiclib QTKitCapture.o -o libopencapture.dylib
-	$(CC) $(OSX_OPTS) ../core/cli.o QTKitCapture.o -o opencapture
+	$(CC) $(OSX_OPTS) -dynamiclib ../core/core.o QTKitCapture.o -o libopencapture.dylib
+	$(CC) $(OSX_OPTS) ../core/cli.o ../core/core.o QTKitCapture.o -o opencapture
 	make -C test
 
 clean:

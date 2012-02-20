@@ -1,4 +1,5 @@
-src/**/*.o
+src/core/*.o
+src/osx/*.o
 src/osx/*.dylib
 src/osx/opencapture
 src/osx/test/*.dylib
