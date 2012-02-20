@@ -2,5 +2,6 @@ src/core/*.o
 src/osx/*.o
 src/osx/*.dylib
 src/osx/opencapture
+src/osx/test/*.o
 src/osx/test/*.dylib
 src/osx/test/opencapture_test
