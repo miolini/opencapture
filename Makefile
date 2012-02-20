@@ -16,3 +16,8 @@ clean_core:
 clean_osx: clean_core
 	make -C src/osx clean
 
+linux: core
+	make -C src/linux
+	
+clean_linux: core
+	make -C src/linux clean
