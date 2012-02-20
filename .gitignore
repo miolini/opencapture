@@ -1,5 +1,6 @@
 src/core/*.o
 src/osx/*.o
+src/osx/*.a
 src/osx/*.dylib
 src/osx/opencapture
 src/osx/test/*.o

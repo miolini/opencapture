@@ -2,8 +2,7 @@ CC=clang
 
 all:
 	$(CC) -I../../../include -c -fPIC main.c -o main.o
-	cp ../libopencapture.dylib ./
-	$(CC) -L./ -lopencapture main.o -o opencapture_test
+	$(CC) -F/System/Library/Frameworks -framework Foundation -framework QTKit ../opencapture.a main.o -o opencapture_test
 
 clean:
 	rm -Rf *.o
