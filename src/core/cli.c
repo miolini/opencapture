@@ -1,6 +1,6 @@
-#include "cli.h"
-#include "opencapture.h"
 #include <stdio.h>
+#include <opencapture.h>
+#include "cli.h"
 
 int main() 
 {

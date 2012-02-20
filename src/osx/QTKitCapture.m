@@ -1,5 +1,5 @@
 #import "QTKitCapture.h"
-#import "../opencapture.h"
+#import <opencapture.h>
 #import <stdio.h>
 
 @implementation QTKitCapture

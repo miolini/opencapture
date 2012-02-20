@@ -1,8 +1,12 @@
 CC=clang
+OPTS=-I../../include
+OSX_OPTS=-F/System/Library/Frameworks -framework Foundation -framework QTKit
 
 all:
-	$(CC) -c -fPIC QTKitCapture.m -o QTKitCapture.o
-	$(CC) -F/System/Library/Frameworks -framework Foundation ../cli.o QTKitCapture.o -o opencapture.o
+	$(CC) $(OPTS) -c -fPIC QTKitCapture.m -o QTKitCapture.o
+	$(CC) $(OSX_OPTS) -dynamiclib QTKitCapture.o -o libopencapture.dylib
+	$(CC) $(OSX_OPTS) ../core/cli.o QTKitCapture.o -o opencapture
+	make -C test
 
 clean:
 	rm *.o

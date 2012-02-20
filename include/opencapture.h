@@ -7,5 +7,6 @@ typedef struct oc_instance
 } oc_instance_t;
 
 void oc_test();
+void os_core_test();
 
 #endif
