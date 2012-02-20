@@ -41,7 +41,8 @@ void oc_device_list_destroy(oc_device_list_t *devices)
 {
     if (devices->count > 0)
     {
-	for(int i=0;i<devices->count;i++)
+	int i;
+	for(i=0;i<devices->count;i++)
 	{
 	    oc_device_t *device = devices->list[i];
 	    free(device);
