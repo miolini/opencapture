@@ -1,0 +1,15 @@
+CC=clang
+OPTS=-I../../include
+win32_OPTS=
+
+all:
+	$(CC) $(OPTS) -c -fPIC win32.c -o win32.o
+	$(CC) $(win32_OPTS) -shared ../core/core.o win32.o -o libopencapture.so
+	ar rcs opencapture.a ../core/core.o win32.o
+	$(CC) $(win32_OPTS) ../core/cli.o ../core/core.o win32.o -o opencapture
+
+clean:
+	rm *.o
+	rm *.dll
+	rm *.a
+	rm opencapture
