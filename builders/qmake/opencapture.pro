@@ -1,4 +1,5 @@
 QT -= core gui
+СONFIG = cli
 
 INCLUDEPATH += ../../include
 
@@ -12,22 +13,29 @@ mac {
 	LIBS += -framework Foundation -framework QTKit
 }
 
-linux {
+unix:!macx {
 	HEADERS += ../../src/linux/linux.h
 	SOURCES += ../../src/linux/linux.c
+}
+
+win32 {
+	HEADERS += ../../src/win32/win32.h
+	SOURCES += ../../src/win32/win32.c
+}
+
+sharedlib {
+	CONFIG -= cli
+	TEMPLATE = lib
+}
+
+staticlib {
+	CONFIG -= cli
+	TEMPLATE = lib
+	CONFiG += staticlib
 }
 
 cli {
 	TEMPLATE = app
 	SOURCES += ../../src/core/cli.c
 	HEADERS += ../../src/core/cli.h
-}
-
-sharedlib {
-	TEMPLATE = lib
-}
-
-staticlib {
-	TEMPLATE = lib
-	CONFiG += staticlib
 }
