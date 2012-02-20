@@ -10,3 +10,5 @@ all:
 
 clean:
 	rm *.o
+	rm *.dylib
+	rm opencapture

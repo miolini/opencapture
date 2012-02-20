@@ -7,3 +7,5 @@ all:
 
 clean:
 	rm -Rf *.o
+	rm *.dylib
+	rm opencapture_test
