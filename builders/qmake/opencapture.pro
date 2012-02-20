@@ -11,6 +11,7 @@ mac {
 	HEADERS += ../../src/osx/osx.h
 	OBJECTIVE_SOURCES += ../../src/osx/osx.m
 	LIBS += -framework Foundation -framework QTKit
+	CONFIG -= app_bundle
 }
 
 unix:!macx {
