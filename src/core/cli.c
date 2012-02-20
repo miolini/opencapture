@@ -35,6 +35,7 @@ void oc_cli_print_devices(oc_context_t *oc_context, int deviceType)
 		oc_device_t *device = devices->list[i];
 		printf("video device: name='%s', id='%s'\n", device->name, device->id);
 	}
+	oc_device_list_destroy(devices);
 }
 
 int main(int argc, char *argv[]) 

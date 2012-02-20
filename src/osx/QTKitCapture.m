@@ -93,3 +93,14 @@ oc_device_list_t* oc_device_list_audio(oc_context_t *_context)
 {
 	return oc_device_list_all(_context, 2);
 }
+
+void oc_device_list_destroy(oc_device_list_t *devices)
+{
+	for(int i=0;i<devices->count;i++)
+	{
+		oc_device_t *device = devices->list[i];
+		free(device);
+	}
+	free(devices->list);
+	free(devices);
+}
