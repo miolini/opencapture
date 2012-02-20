@@ -1,4 +1,4 @@
-#import "QTKitCapture.h"
+#import "osx.h"
 #import <stdio.h>
 
 @implementation QTKitCapture
@@ -68,7 +68,8 @@ oc_device_list_t* oc_device_list_all(oc_context_t *_context, int type)
 	oc_device_list_t *devices = malloc(sizeof(oc_device_list_t));
 	devices->count = [list count];
 	devices->list = malloc(sizeof(oc_device_t)*devices->count);
-	for(int i=0; i < devices->count; i++)
+	int i;
+	for(i=0; i < devices->count; i++)
 	{
 		QTCaptureDevice *captureDevice = [list objectAtIndex:i];
 		oc_device_t *device = malloc(sizeof(oc_device_t));
@@ -96,7 +97,8 @@ oc_device_list_t* oc_device_list_audio(oc_context_t *_context)
 
 void oc_device_list_destroy(oc_device_list_t *devices)
 {
-	for(int i=0;i<devices->count;i++)
+	int i;
+	for(i=0;i<devices->count;i++)
 	{
 		oc_device_t *device = devices->list[i];
 		free(device);
