@@ -10,3 +10,9 @@ src/linux/*.o
 src/linux/*.so
 src/linux/*.a
 src/linux/opencapture
+builders/qmake/*.o
+builders/qmake/*.so
+builders/qmake/*.dylib
+builders/qmake/*.dll
+builders/qmake/*.a
+builders/qmake/opencapture
