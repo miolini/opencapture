@@ -1,9 +1,13 @@
 QT -= core gui
-СONFIG = cli
+СONFIG += cli
 
 INCLUDEPATH += ../../include
 
 SOURCES += ../../src/core/core.c
+
+TEMPLATE = app
+SOURCES += ../../src/core/cli.c
+HEADERS += ../../src/core/cli.h
 
 
 mac {
@@ -25,18 +29,14 @@ win32 {
 }
 
 sharedlib {
-	CONFIG -= cli
 	TEMPLATE = lib
+	SOURCES -= ../../src/core/cli.c
+	HEADERS -= ../../src/core/cli.h
 }
 
 staticlib {
-	CONFIG -= cli
 	TEMPLATE = lib
 	CONFiG += staticlib
-}
-
-cli {
-	TEMPLATE = app
-	SOURCES += ../../src/core/cli.c
-	HEADERS += ../../src/core/cli.h
+	SOURCES -= ../../src/core/cli.c
+	HEADERS -= ../../src/core/cli.h
 }
