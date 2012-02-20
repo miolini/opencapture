@@ -1,5 +1,4 @@
 #import "QTKitCapture.h"
-#import <opencapture.h>
 #import <stdio.h>
 
 @implementation QTKitCapture
@@ -54,10 +53,18 @@ void oc_context_destroy(oc_context_t *_context)
 	free(context);
 }
 
-oc_device_list_t* oc_device_list(oc_context_t *_context)
+oc_device_list_t* oc_device_list_all(oc_context_t *_context, int type)
 {
 	oc_osx_context_t *context = (oc_osx_context_t*) _context;
-	NSArray *list = [QTCaptureDevice inputDevices];
+	NSArray *list;
+
+	if (type == 0)
+		list = [QTCaptureDevice inputDevices];
+	else if (type == 1)
+		list = [QTCaptureDevice inputDevicesWithMediaType:QTMediaTypeVideo];
+	else if (type == 3)
+		list = [QTCaptureDevice inputDevicesWithMediaType:QTMediaTypeSound];
+
 	oc_device_list_t *devices = malloc(sizeof(oc_device_list_t));
 	devices->count = [list count];
 	devices->list = malloc(sizeof(oc_device_t)*devices->count);
@@ -70,40 +77,19 @@ oc_device_list_t* oc_device_list(oc_context_t *_context)
 		devices->list[i] = device;
 	}
 	return devices;
+}
+
+oc_device_list_t* oc_device_list(oc_context_t *_context)
+{
+	return oc_device_list_all(_context, 0);
 }
 
 oc_device_list_t* oc_device_list_video(oc_context_t *_context)
 {
-	oc_osx_context_t *context = (oc_osx_context_t*) _context;
-	NSArray *list = [QTCaptureDevice inputDevicesWithMediaType:QTMediaTypeVideo];
-	oc_device_list_t *devices = malloc(sizeof(oc_device_list_t));
-	devices->count = [list count];
-	devices->list = malloc(sizeof(oc_device_t)*devices->count);
-	for(int i=0; i < devices->count; i++)
-	{
-		QTCaptureDevice *captureDevice = [list objectAtIndex:i];
-		oc_device_t *device = malloc(sizeof(oc_device_t));
-		device->id = [[captureDevice uniqueID] UTF8String];
-		device->name = [[captureDevice localizedDisplayName] UTF8String];
-		devices->list[i] = device;
-	}
-	return devices;
+	return oc_device_list_all(_context, 1);
 }
 
 oc_device_list_t* oc_device_list_audio(oc_context_t *_context)
 {
-	oc_osx_context_t *context = (oc_osx_context_t*) _context;
-	NSArray *list = [QTCaptureDevice inputDevicesWithMediaType:QTMediaTypeSound];
-	oc_device_list_t *devices = malloc(sizeof(oc_device_list_t));
-	devices->count = [list count];
-	devices->list = malloc(sizeof(oc_device_t)*devices->count);
-	for(int i=0; i < devices->count; i++)
-	{
-		QTCaptureDevice *captureDevice = [list objectAtIndex:i];
-		oc_device_t *device = malloc(sizeof(oc_device_t));
-		device->id = [[captureDevice uniqueID] UTF8String];
-		device->name = [[captureDevice localizedDisplayName] UTF8String];
-		devices->list[i] = device;
-	}
-	return devices;
+	return oc_device_list_all(_context, 2);
 }
