@@ -27,7 +27,7 @@ void oc_cli_print_devices(oc_context_t *oc_context, int deviceType)
 	}
 	if (devices->count == 0) 
 	{
-		printf("error: video devices not found\n");
+		printf("error: devices not found\n");
 		return;
 	}
 	for(int i=0;i<devices->count;i++)
