@@ -30,7 +30,8 @@ void oc_cli_print_devices(oc_context_t *oc_context, int deviceType)
 		printf("error: devices not found\n");
 		return;
 	}
-	for(int i=0;i<devices->count;i++)
+	int i;
+	for(i=0;i<devices->count;i++)
 	{
 		oc_device_t *device = devices->list[i];
 		printf("video device: name='%s', id='%s'\n", device->name, device->id);
