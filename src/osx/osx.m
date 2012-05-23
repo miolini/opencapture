@@ -1,39 +1,56 @@
 #import "osx.h"
 #import <stdio.h>
 
-@implementation QTKitCapture
+@implementation OpenCapture
+
+@synthesize videoDevice;
+@synthesize context;
+@synthesize videoCallback;
 
 - (void)startCapture
 {
-	// Create a new Capture Session
-    mCaptureSession = [[QTCaptureSession alloc] init]; 
-
-    //Connect inputs and outputs to the session
-    BOOL success = NO;
+	BOOL success = NO;
     NSError *error;
-
-    // Find a video device
-    QTCaptureDevice *device = [QTCaptureDevice defaultInputDeviceWithMediaType:@"QTMediaTypeVideo"];
-    if(device) {
-        success = [device open:&error];
+    captureSession = [[QTCaptureSession alloc] init]; 
+    if(videoDevice) {
+        success = [videoDevice open:&error];
         if(!success) {
-            // Handle Error!
+			return;
         }
-        // Add the video device to the session as device input
-        mCaptureDeviceInput = [[QTCaptureDeviceInput alloc] initWithDevice:device];
-        success = [mCaptureSession addInput:mCaptureDeviceInput error:&error];
+        videoInput = [[QTCaptureDeviceInput alloc] initWithDevice:videoDevice];
+        success = [captureSession addInput:videoInput error:&error];
         if(!success) {
-            // Handle error
+			return;
         }
+		QTCaptureDecompressedVideoOutput *videoOutput = [[QTCaptureDecompressedVideoOutput alloc] init];
+		[videoOutput setDelegate: self];
+		success = [captureSession addOutput:videoOutput error:&error];
+        if(!success) {
+			return;
+        }
+    } 
+	[captureSession startRunning];
+	printf("capture session runned\n");
+}
 
-        // Associate the capture view in the UI with the session
-        //[mCaptureView setCaptureSession:mCaptureSession];
-
-        // Start the capture session runing
-        [mCaptureSession startRunning];
-
-    } // End if device
-
+- (void)captureOutput:(QTCaptureOutput *)captureOutput 
+	didOutputVideoFrame:(CVImageBufferRef)videoFrame 
+	withSampleBuffer:(QTSampleBuffer *)sampleBuffer 
+	fromConnection:(QTCaptureConnection *)connection
+{
+	if (self->videoCallback == NULL) return;
+	int w = CVPixelBufferGetWidth(videoFrame);
+	int h = CVPixelBufferGetHeight(videoFrame);
+	CVImageBufferRef imageBufferToRelease;
+	//CVBufferRetain(videoFrame);
+	@synchronized (self) {
+		imageBufferToRelease = frameBuffer;
+		frameBuffer = videoFrame;
+	}
+	//CVBufferRelease(imageBufferToRelease);
+	char *data = (char *) [sampleBuffer bytesForAllSamples];
+	printf("buffer length: %d\n", [sampleBuffer lengthForAllSamples]); 
+	self->videoCallback(context, w, h, data);
 }
 
 @end
@@ -75,6 +92,7 @@ oc_device_list_t* oc_device_list_all(oc_context_t *_context, int type)
 		oc_device_t *device = malloc(sizeof(oc_device_t));
 		device->id = [[captureDevice uniqueID] UTF8String];
 		device->name = [[captureDevice localizedDisplayName] UTF8String];
+		device->native = captureDevice;
 		devices->list[i] = device;
 	}
 	return devices;
@@ -105,4 +123,23 @@ void oc_device_list_destroy(oc_device_list_t *devices)
 	}
 	free(devices->list);
 	free(devices);
+}
+
+void oc_start(oc_context_t *_context, oc_device_t *video, OC_CALLBACK(videoCallback), oc_device_t *audio) 
+{
+	printf("starting capturing session\n");
+	oc_osx_context_t *context = (oc_osx_context_t*) _context;
+	context->openCapture = [[OpenCapture alloc] init];
+	if (video != NULL)
+	{
+		QTCaptureDevice *videoDevice = video->native;
+		[context->openCapture setVideoDevice:videoDevice];
+		[context->openCapture startCapture];
+		[context->openCapture setVideoCallback: videoCallback];
+		[context->openCapture setContext:context];
+	}
+	while (1)
+	{
+		[[NSRunLoop currentRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 1]];
+	}
 }

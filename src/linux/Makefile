@@ -11,4 +11,5 @@ all:
 clean:
 	rm *.o
 	rm *.so
+	rm *.a
 	rm opencapture

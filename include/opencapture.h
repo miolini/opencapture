@@ -5,6 +5,7 @@ typedef struct
 {
 	const char *id;
 	const char *name;
+	void *native;
 } oc_device_t;
 
 typedef struct
@@ -13,7 +14,16 @@ typedef struct
 	int count;
 } oc_device_list_t;
 
+typedef struct
+{
+	oc_device_t *videoInput;
+	oc_device_t *audioInput;
+	void *session;
+} oc_session_t;
+
 typedef void oc_context_t;
+
+#define OC_CALLBACK(func) void (*func)(oc_context_t *context, int width, int height, char *data)
 
 oc_context_t* oc_context_create();
 void oc_context_destroy(oc_context_t *context);
@@ -23,6 +33,6 @@ oc_device_list_t*  oc_device_list_video(oc_context_t *context);
 oc_device_list_t*  oc_device_list_audio(oc_context_t *context);
 void oc_device_list_destroy(oc_device_list_t *device);
 
-void oc_start(oc_context_t *context, oc_device_t *device);
+void oc_start(oc_context_t *context, oc_device_t *videoInput, OC_CALLBACK(videoCallback), oc_device_t *audioInput);
 
 #endif
