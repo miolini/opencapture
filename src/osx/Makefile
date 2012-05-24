@@ -16,6 +16,5 @@ clean:
 	rm -f *.a
 	rm -f *.dylib
 	rm -f opencapture 
-	rm -f opencapture_test
 	rm -f .DS_Store
 	rm -Rf frames
