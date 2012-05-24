@@ -31,7 +31,7 @@ void oc_context_destroy(oc_context_t *context);
 oc_device_list_t*  oc_device_list(oc_context_t *context);
 oc_device_list_t*  oc_device_list_video(oc_context_t *context);
 oc_device_list_t*  oc_device_list_audio(oc_context_t *context);
-int oc_device_find_by_id(oc_context_t *context, const char *name, oc_device_t* device);
+int oc_device_find_by_id(oc_context_t *context, const char *name, oc_device_t **device);
 void oc_device_list_destroy(oc_device_list_t *device);
 
 void oc_start(oc_context_t *context, oc_device_t *videoInput, OC_CALLBACK(videoCallback), oc_device_t *audioInput);

@@ -132,11 +132,11 @@ void oc_start(oc_context_t *_context, oc_device_t *video, OC_CALLBACK(videoCallb
 		[context->openCapture setContext:context];
 		[context->openCapture startCapture];
 	}
-	//[NSApp run];
+	[NSApp run];
 	
-	while (1)
+	//while (1)
 	{
-		[[NSRunLoop currentRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 1]];
+	//	[[NSRunLoop currentRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 1]];
 	}
 	
 }

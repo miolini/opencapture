@@ -2,7 +2,10 @@ CC=clang
 OPTS=-I../../include
 OSX_OPTS=-F/System/Library/Frameworks -framework Foundation -framework QTKit -framework CoreVideo -framework Cocoa
 
-all: common
+all: core common
+
+core:
+	make -C ../core
 
 common:
 	$(CC) $(OPTS) -c -fPIC osx.m -o osx.o
