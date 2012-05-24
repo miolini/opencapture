@@ -9,6 +9,8 @@ void oc_cli_print_help()
 	printf("\t--list-all\n\t\tList all available devices\n");
 	printf("\t--list-video\n\t\tList all available video devices\n");
 	printf("\t--list-audio\n\t\tList all available audio devices\n");
+	printf("\n");
+	printf("\t--monitor-video <device_id>\n");
 }
 
 void oc_cli_print_devices(oc_context_t *oc_context, int deviceType)
@@ -34,7 +36,7 @@ void oc_cli_print_devices(oc_context_t *oc_context, int deviceType)
 	for(i=0;i<devices->count;i++)
 	{
 		oc_device_t *device = devices->list[i];
-		printf("video device: name='%s', id='%s'\n", device->name, device->id);
+		printf("device: name='%s', id='%s'\n", device->name, device->id);
 	}
 	oc_device_list_destroy(devices);
 }
@@ -54,6 +56,15 @@ int main(int argc, char *argv[])
 			oc_cli_print_devices(oc_context, 1);
 		else if (strcmp(opt,"--list-audio") == 0)
 			oc_cli_print_devices(oc_context, 2);
+		else if (strcmp(opt,"--monitor-video") == 0) 
+		{
+			if (argc == 2) 
+			{
+				printf("error:\tfor monitor video need parameter: device_id\n");
+				return -1;
+			}
+			oc_cli_montior_video(argv[2]);
+		}
 		else 
 			printf("Unknown option: %s\n, try read help (opencapture --help)", opt);
 	}

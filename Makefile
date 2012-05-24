@@ -1,5 +1,3 @@
-CC=clang
-
 all:
 	@echo Please choose OS destination:
 	@echo '$$ make <win32|linux|osx>'

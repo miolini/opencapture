@@ -9,7 +9,8 @@ all:
 	$(CC) $(win32_OPTS) ../core/cli.o ../core/core.o win32.o -o opencapture
 
 clean:
-	rm *.o
-	rm *.dll
-	rm *.a
-	rm opencapture
+	rm -f *.o
+	rm -f *.dll
+	rm -f *.a
+	rm -f *.so
+	rm -f opencapture

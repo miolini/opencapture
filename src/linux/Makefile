@@ -9,7 +9,7 @@ all:
 	$(CC) $(LINUX_OPTS) ../core/cli.o ../core/core.o linux.o -o opencapture
 
 clean:
-	rm *.o
-	rm *.so
-	rm *.a
-	rm opencapture
+	rm -f *.o
+	rm -f *.so
+	rm -f *.a
+	rm -f opencapture
