@@ -8,7 +8,7 @@ core:
 	make -C ../core
 
 common:
-	#$(CC) $(OPTS) -c -fPIC osx.m -o osx.o
+	$(CC) $(OPTS) -c -fPIC osx.m -o osx.o
 	$(CC) $(OPTS) -c -fPIC monitor.m -o monitor.o
 	$(CC) $(OSX_OPTS) -dynamiclib ../core/core.o osx.o -o libopencapture.dylib
 	ar rcs opencapture.a ../core/core.o osx.o
