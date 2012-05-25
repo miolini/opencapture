@@ -1,5 +1,5 @@
 CC=clang
-OPTS=-I../../include
+OPTS=-O3 -I../../include
 
 all:
 	$(CC) $(OPTS) -c -fPIC core.c -o core.o

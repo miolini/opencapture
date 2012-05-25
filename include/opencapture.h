@@ -7,6 +7,7 @@ typedef struct
 {
 	const char *id;
 	const char *name;
+    int type;
 	void *native;
 } oc_device_t;
 

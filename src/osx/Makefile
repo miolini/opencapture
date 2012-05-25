@@ -1,6 +1,6 @@
 CC=clang
 OPTS=-I../../include
-OSX_OPTS=-F/System/Library/Frameworks -framework Foundation -framework QTKit -framework CoreVideo -framework Cocoa
+OSX_OPTS=-O3 -F/System/Library/Frameworks -framework Foundation -framework QTKit -framework CoreVideo -framework Cocoa
 
 all: common
 

@@ -1,6 +1,6 @@
 CC=clang
 OPTS=-I../../include
-LINUX_OPTS=
+LINUX_OPTS=-O3
 
 all:
 	$(CC) $(OPTS) -c -fPIC linux.c -o linux.o
