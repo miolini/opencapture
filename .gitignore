@@ -1,10 +1,9 @@
-*.o
+﻿*.o
 *.a
 *.so
 *.dll
 *.dylib
 src/osx/opencapture
-src/osx/test/opencapture_test
 src/linux/opencapture
 builders/qmake/opencapture
 builders/qmake/Makefile
