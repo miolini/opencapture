@@ -6,4 +6,4 @@ all:
 	$(CC) $(OPTS) -c -fPIC cli.c -o cli.o
 
 clean:
-	rm -Rf *.o
+	rm -f *.o
