@@ -1,0 +1,291 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2815ADFF156F3C14000C7DF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2815ADFE156F3C14000C7DF4 /* Foundation.framework */; };
+		2815AE06156F3C14000C7DF4 /* opencapture.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2815AE05156F3C14000C7DF4 /* opencapture.1 */; };
+		2815AE15156F3C51000C7DF4 /* cli.c in Sources */ = {isa = PBXBuildFile; fileRef = 2815AE12156F3C51000C7DF4 /* cli.c */; };
+		2815AE16156F3C51000C7DF4 /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = 2815AE14156F3C51000C7DF4 /* core.c */; };
+		2815AE1B156F3C69000C7DF4 /* monitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2815AE18156F3C69000C7DF4 /* monitor.m */; };
+		2815AE1C156F3C69000C7DF4 /* osx.m in Sources */ = {isa = PBXBuildFile; fileRef = 2815AE1A156F3C69000C7DF4 /* osx.m */; };
+		2815AE20156F3CE0000C7DF4 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2815AE1F156F3CE0000C7DF4 /* QTKit.framework */; };
+		2815AE22156F3D04000C7DF4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2815AE21156F3D04000C7DF4 /* Cocoa.framework */; };
+		2815AE24156F3D0E000C7DF4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2815AE23156F3D0E000C7DF4 /* CoreVideo.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2815ADF8156F3C14000C7DF4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				2815AE06156F3C14000C7DF4 /* opencapture.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2815ADFA156F3C14000C7DF4 /* opencapture */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = opencapture; sourceTree = BUILT_PRODUCTS_DIR; };
+		2815ADFE156F3C14000C7DF4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2815AE04156F3C14000C7DF4 /* opencapture-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "opencapture-Prefix.pch"; sourceTree = "<group>"; };
+		2815AE05156F3C14000C7DF4 /* opencapture.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = opencapture.1; sourceTree = "<group>"; };
+		2815AE12156F3C51000C7DF4 /* cli.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cli.c; path = ../../../src/core/cli.c; sourceTree = "<group>"; };
+		2815AE13156F3C51000C7DF4 /* cli.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cli.h; path = ../../../src/core/cli.h; sourceTree = "<group>"; };
+		2815AE14156F3C51000C7DF4 /* core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = core.c; path = ../../../src/core/core.c; sourceTree = "<group>"; };
+		2815AE18156F3C69000C7DF4 /* monitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = monitor.m; path = ../../../src/osx/monitor.m; sourceTree = "<group>"; };
+		2815AE19156F3C69000C7DF4 /* osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = osx.h; path = ../../../src/osx/osx.h; sourceTree = "<group>"; };
+		2815AE1A156F3C69000C7DF4 /* osx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = osx.m; path = ../../../src/osx/osx.m; sourceTree = "<group>"; };
+		2815AE1E156F3C7B000C7DF4 /* opencapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opencapture.h; path = ../../../include/opencapture.h; sourceTree = "<group>"; };
+		2815AE1F156F3CE0000C7DF4 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		2815AE21156F3D04000C7DF4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		2815AE23156F3D0E000C7DF4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2815ADF7156F3C14000C7DF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2815AE24156F3D0E000C7DF4 /* CoreVideo.framework in Frameworks */,
+				2815AE22156F3D04000C7DF4 /* Cocoa.framework in Frameworks */,
+				2815AE20156F3CE0000C7DF4 /* QTKit.framework in Frameworks */,
+				2815ADFF156F3C14000C7DF4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2815ADEF156F3C14000C7DF4 = {
+			isa = PBXGroup;
+			children = (
+				2815AE23156F3D0E000C7DF4 /* CoreVideo.framework */,
+				2815AE21156F3D04000C7DF4 /* Cocoa.framework */,
+				2815AE1F156F3CE0000C7DF4 /* QTKit.framework */,
+				2815AE00156F3C14000C7DF4 /* opencapture */,
+				2815ADFD156F3C14000C7DF4 /* Frameworks */,
+				2815ADFB156F3C14000C7DF4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2815ADFB156F3C14000C7DF4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2815ADFA156F3C14000C7DF4 /* opencapture */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2815ADFD156F3C14000C7DF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2815ADFE156F3C14000C7DF4 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2815AE00156F3C14000C7DF4 /* opencapture */ = {
+			isa = PBXGroup;
+			children = (
+				2815AE1D156F3C6F000C7DF4 /* include */,
+				2815AE17156F3C54000C7DF4 /* osx */,
+				2815AE11156F3C41000C7DF4 /* core */,
+				2815AE05156F3C14000C7DF4 /* opencapture.1 */,
+				2815AE03156F3C14000C7DF4 /* Supporting Files */,
+			);
+			path = opencapture;
+			sourceTree = "<group>";
+		};
+		2815AE03156F3C14000C7DF4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2815AE04156F3C14000C7DF4 /* opencapture-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2815AE11156F3C41000C7DF4 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				2815AE12156F3C51000C7DF4 /* cli.c */,
+				2815AE13156F3C51000C7DF4 /* cli.h */,
+				2815AE14156F3C51000C7DF4 /* core.c */,
+			);
+			name = core;
+			sourceTree = "<group>";
+		};
+		2815AE17156F3C54000C7DF4 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				2815AE18156F3C69000C7DF4 /* monitor.m */,
+				2815AE19156F3C69000C7DF4 /* osx.h */,
+				2815AE1A156F3C69000C7DF4 /* osx.m */,
+			);
+			name = osx;
+			sourceTree = "<group>";
+		};
+		2815AE1D156F3C6F000C7DF4 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				2815AE1E156F3C7B000C7DF4 /* opencapture.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2815ADF9156F3C14000C7DF4 /* opencapture */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2815AE09156F3C14000C7DF4 /* Build configuration list for PBXNativeTarget "opencapture" */;
+			buildPhases = (
+				2815ADF6156F3C14000C7DF4 /* Sources */,
+				2815ADF7156F3C14000C7DF4 /* Frameworks */,
+				2815ADF8156F3C14000C7DF4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = opencapture;
+			productName = opencapture;
+			productReference = 2815ADFA156F3C14000C7DF4 /* opencapture */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2815ADF1156F3C14000C7DF4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 2815ADF4156F3C14000C7DF4 /* Build configuration list for PBXProject "opencapture" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2815ADEF156F3C14000C7DF4;
+			productRefGroup = 2815ADFB156F3C14000C7DF4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2815ADF9156F3C14000C7DF4 /* opencapture */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2815ADF6156F3C14000C7DF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2815AE15156F3C51000C7DF4 /* cli.c in Sources */,
+				2815AE16156F3C51000C7DF4 /* core.c in Sources */,
+				2815AE1B156F3C69000C7DF4 /* monitor.m in Sources */,
+				2815AE1C156F3C69000C7DF4 /* osx.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2815AE07156F3C14000C7DF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2815AE08156F3C14000C7DF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2815AE0A156F3C14000C7DF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "opencapture/opencapture-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../../include/**";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2815AE0B156F3C14000C7DF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "opencapture/opencapture-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../../include/**";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2815ADF4156F3C14000C7DF4 /* Build configuration list for PBXProject "opencapture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2815AE07156F3C14000C7DF4 /* Debug */,
+				2815AE08156F3C14000C7DF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2815AE09156F3C14000C7DF4 /* Build configuration list for PBXNativeTarget "opencapture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2815AE0A156F3C14000C7DF4 /* Debug */,
+				2815AE0B156F3C14000C7DF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2815ADF1156F3C14000C7DF4 /* Project object */;
+}

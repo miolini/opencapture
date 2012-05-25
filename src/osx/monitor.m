@@ -30,48 +30,40 @@ float clamp(float value, float min, float max)
 	else return value;
 }
 
+typedef unsigned char uchar;
+
 void convert_yuv442_2_rgb24(const unsigned char* source, unsigned char* destination, unsigned long width, unsigned long height)
 {
-    for(unsigned long i = 0, c = 0; i < width * height * 2; i += 4, c += 6)
+	unsigned long i, c;
+    for(i = 0, c = 0; i < width * height * 2; i += 4, c += 6)
     {
-		int y1 = source[i];
-		int y2 = source[i+2];
-		int u = source[i+1];
-		int v = source[i+3];
+		uchar y1 = source[i] - 16;
+		uchar y2 = source[i+2] - 16;
+		uchar u = source[i+1] - 128;
+		uchar v = source[i+3] - 128;
+		
+		destination[c+0] = (uchar) clamp((298 * y1 + 409 * v + 128) >> 8, 0, 255);
+		destination[c+1] = (uchar) clamp((298 * y1 - 100 * u - 208 * v + 128) >> 8, 0, 255);
+		destination[c+2] = (uchar) clamp((298 * y1 + 516 * u + 128) >> 8, 0, 255);
 
-		destination[c+0] = y1 + (1.370705 * (v-128));
-		destination[c+1] = y1 - (0.698001 * (v-128)) - (0.337633 * (u-128));
-		destination[c+2] = y1 + (1.732446 * (u-128));
+		if ( i % 10000 == 0) printf("yuv[%u:%u:%u]  => rgb[%u:%u:%u]\n", y1, u, v, destination[c+0], destination[c+1], destination[c+2]);
 
-		destination[c+3] = y2 + (1.370705 * (v-128));
-		destination[c+4] = y2 - (0.698001 * (v-128)) - (0.337633 * (u-128));
-		destination[c+5] = y2 + (1.732446 * (u-128));
+		destination[c+3] = clamp((298 * y2 + 409 * v + 128) >> 8, 0, 255);
+		destination[c+4] = clamp((298 * y2 - 100 * u - 208 * v + 128) >> 8, 0, 255);
+		destination[c+5] = clamp((298 * y2 + 516 * u + 128) >> 8, 0, 255);
     }
 }
-
 
 void video_callback(oc_context_t *context, int width, int height, char *data) 
 {
 	printf("test: frame %dx%d captured\n", width, height);
-
 	unsigned char *data2 = malloc(width*height*3);
 	convert_yuv442_2_rgb24((const unsigned char*) data, data2, width, height);
 
 	NSImage *image = [[NSImage alloc] initWithSize:NSMakeSize(width,height)];
 	NSBitmapImageRep *imageRep;
-	unsigned char *planes;
-	int i;
-
-	// prepare memory for image rep:
-	planes = malloc (width * height * 3);
-	for (i=0; i<width*height; i+=3) {
-		planes[i+0] = data2[i+0];
-		planes[i+width*height] = data2[i+width*height];
-		planes[i+width*height*2] = data2[i+width*height*2];
-	}
-
 	imageRep = [[NSBitmapImageRep alloc]
-		initWithBitmapDataPlanes:&planes
+		initWithBitmapDataPlanes:&data2
 		pixelsWide:width
 		pixelsHigh:height
 		bitsPerSample:8
@@ -83,12 +75,9 @@ void video_callback(oc_context_t *context, int width, int height, char *data)
 		bitsPerPixel:24];
 
 	[image addRepresentation:imageRep];
-	[image lockFocusOnRepresentation:imageRep];
-	[image unlockFocus];
 	[[display image] release];
-	free(planes);
 	[display setImage: image];
-//	[display drawRect: NSMakeRect(0, 0, width, height) ];
+	free(data2);
 }
 
 void oc_cli_montior_video(const char *device_id)

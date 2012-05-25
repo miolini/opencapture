@@ -23,7 +23,8 @@ int oc_device_find_by_id(oc_context_t *context, const char *id, oc_device_t **de
 {
 	oc_device_list_t *deviceList = oc_device_list_video(context);
 	oc_device_t *current_device = NULL;
-	for(int i=0;i<deviceList->count;i++)
+	int i;
+	for(i=0;i<deviceList->count;i++)
 	{
 		current_device = deviceList->list[i];
 		if (strcmp(current_device->id, id) == 0) break;

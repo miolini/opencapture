@@ -9,12 +9,11 @@ TEMPLATE = app
 SOURCES += ../../src/core/cli.c
 HEADERS += ../../src/core/cli.h
 
-
 mac {
 	QMAKE_LFLAGS += -F/System/Library/Frameworks
 	HEADERS += ../../src/osx/osx.h
-	OBJECTIVE_SOURCES += ../../src/osx/osx.m
-	LIBS += -framework Foundation -framework QTKit
+	OBJECTIVE_SOURCES += ../../src/osx/osx.m ../../src/osx/monitor.m
+	LIBS += -framework Foundation -framework QTKit -framework CoreVideo -framework Cocoa
 	CONFIG -= app_bundle
 }
 

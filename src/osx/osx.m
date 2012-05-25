@@ -47,15 +47,16 @@
 	if (self->videoCallback == NULL) return;
 	int w = CVPixelBufferGetWidth(videoFrame);
 	int h = CVPixelBufferGetHeight(videoFrame);
+	/*
 	CVImageBufferRef imageBufferToRelease;
-	CVBufferRetain(videoFrame);
+	//CVBufferRetain(videoFrame);
 	@synchronized (self) {
 		imageBufferToRelease = frameBuffer;
-		frameBuffer = videoFrame;
+		frameBuffer = sampleBuffer;
 	}
 	//CVBufferRelease(imageBufferToRelease);
+	*/
 	char *data = (char *) [sampleBuffer bytesForAllSamples];
-	printf("buffer length: %lu\n", [sampleBuffer lengthForAllSamples]); 
 	self->videoCallback(context, w, h, data);
 }
 
@@ -78,7 +79,6 @@ void oc_context_destroy(oc_context_t *_context)
 
 oc_device_list_t* oc_device_list_by_type(oc_context_t *_context, int type)
 {
-	oc_osx_context_t *context = (oc_osx_context_t*) _context;
 	NSArray *list;
 
 	if (type == 0)

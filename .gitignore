@@ -17,3 +17,4 @@ builders/qmake/*.dll
 builders/qmake/*.a
 builders/qmake/opencapture
 builders/qmake/Makefile
+xcuserdata
