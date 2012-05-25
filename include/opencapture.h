@@ -1,6 +1,8 @@
 #ifndef OPENCAPTURE_H
 #define OPENCAPTURE_H
 
+typedef void oc_context_t;
+
 typedef struct
 {
 	const char *id;
@@ -21,7 +23,7 @@ typedef struct
 	void *session;
 } oc_session_t;
 
-typedef void oc_context_t;
+
 
 #define OC_CALLBACK(func) void (*func)(oc_context_t *context, int width, int height, char *data)
 
