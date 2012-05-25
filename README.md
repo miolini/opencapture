@@ -2,8 +2,9 @@
 
 ## Overview
 
-**OpenCapture** - crossplatform library for capture video and audio.
+**OpenCapture** - open-source lightweight cross-platform library for capture video and audio.
 
 ## Support
 
-Any questions, please, send to me Artem V. Andreenko (miolini@gmail.com)
+If you have any questions, please, send to me email:
+    Artem V. Andreenko (miolini@gmail.com)
