@@ -17,7 +17,6 @@
 
 int count = 0;
 	
-//- (void)drawRect:(NSRect)rect {}
 @end
 
 OCDisplay *display;
@@ -37,26 +36,25 @@ void convert_yuv442_2_rgb24(const unsigned char* source, unsigned char* destinat
 	unsigned long i, c;
     for(i = 0, c = 0; i < width * height * 2; i += 4, c += 6)
     {
-		uchar y1 = source[i] - 16;
-		uchar y2 = source[i+2] - 16;
-		uchar u = source[i+1] - 128;
-		uchar v = source[i+3] - 128;
-		
-		destination[c+0] = (uchar) clamp((298 * y1 + 409 * v + 128) >> 8, 0, 255);
-		destination[c+1] = (uchar) clamp((298 * y1 - 100 * u - 208 * v + 128) >> 8, 0, 255);
-		destination[c+2] = (uchar) clamp((298 * y1 + 516 * u + 128) >> 8, 0, 255);
+		int y1 = (source[i] - 16);
+		int y2 = (source[i+2] - 16) * 298;
+		int u = source[i+1] - 128;
+		int v = source[i+3] - 128;
+    
+		//destination[c+2] = (uchar) clamp((y1 + 709 * u + 128) >> 8, 0, 255);
+		//destination[c+1] = (uchar) clamp((y1 + 250 * u - 208 * v + 128) >> 8, 0, 255);
+		//destination[c+0] = (uchar) clamp((400 * y1 - 116 * v + 128) >> 8, 0, 255);
+        
+        destination[c] = destination[c+1] = destination[c+2] = clamp(y1, 0 , 255);
 
-		if ( i % 10000 == 0) printf("yuv[%u:%u:%u]  => rgb[%u:%u:%u]\n", y1, u, v, destination[c+0], destination[c+1], destination[c+2]);
-
-		destination[c+3] = clamp((298 * y2 + 409 * v + 128) >> 8, 0, 255);
-		destination[c+4] = clamp((298 * y2 - 100 * u - 208 * v + 128) >> 8, 0, 255);
-		destination[c+5] = clamp((298 * y2 + 516 * u + 128) >> 8, 0, 255);
+		//destination[c+3] = (uchar) clamp((y2 + 409 * u + 128) >> 8, 0, 255);
+		//destination[c+4] = (uchar) clamp((y2 - 100 * v - 208 * u + 128) >> 8, 0, 255);
+		//destination[c+5] = (uchar) clamp((y2 + 516 * v + 128) >> 8, 0, 255);
     }
 }
 
 void video_callback(oc_context_t *context, int width, int height, char *data) 
 {
-	printf("test: frame %dx%d captured\n", width, height);
 	unsigned char *data2 = malloc(width*height*3);
 	convert_yuv442_2_rgb24((const unsigned char*) data, data2, width, height);
 
@@ -80,18 +78,9 @@ void video_callback(oc_context_t *context, int width, int height, char *data)
 	free(data2);
 }
 
-void oc_cli_montior_video(const char *device_id)
+void oc_cli_monitor_video(const char *device_id)
 {
 	printf("start monitoring device: '%s'\n", device_id);
-	oc_context_t *context = oc_context_create();
-	oc_device_t *device = NULL;
-	if (oc_device_find_by_id(context, device_id, &device) != 0)
-	{
-		printf("can't find device: '%s'\n", device_id);
-		return;
-	}
-	printf("device: %s\n", device->name);
-
 
 	[NSAutoreleasePool new];
     [NSApplication sharedApplication];
@@ -119,7 +108,15 @@ void oc_cli_montior_video(const char *device_id)
 	[window setContentView: display];
     [window makeKeyAndOrderFront:nil];
     [NSApp activateIgnoringOtherApps:YES];
-
+    
+    oc_context_t *context = oc_context_create();
+	oc_device_t *device = NULL;
+	if (oc_device_find_by_id(context, device_id, &device) != 0)
+	{
+		printf("can't find device: '%s'\n", device_id);
+		return;
+	}
+	printf("device: %s\n", device->name);
 	oc_start(context, device, video_callback, NULL);
     //[NSApp run];
 }
