@@ -3,6 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void oc_cli_monitor_video(const char *device_id)
+{
+}
+
+
 oc_context_t* oc_context_create()
 {
     oc_context_win32_t *context = (oc_context_win32_t*) malloc(sizeof(oc_context_win32_t));
@@ -17,7 +22,7 @@ void oc_context_destroy(oc_context_t *_context)
 
 oc_device_list_t* oc_device_list_by_type(oc_context_t *_context, int type)
 {
-    oc_device_list_t *deviceList = malloc(sizeof(oc_device_list_t));
+    oc_device_list_t *deviceList = (oc_device_list_t*) malloc(sizeof(oc_device_list_t));
     deviceList->count = 0;
     return deviceList;
 }
