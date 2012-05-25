@@ -22,7 +22,7 @@ oc_device_list_t* oc_device_list_by_type(oc_context_t *_context, int type)
     return deviceList;
 }
 
-void oc_cli_montior_video(const char *device_id)
+void oc_cli_monitor_video(const char *device_id)
 {
 	printf("monitor video device (not implemented yet): '%s'\n", device_id);
 }
