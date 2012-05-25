@@ -15,6 +15,7 @@ void oc_cli_print_help()
 
 void oc_cli_print_devices(oc_context_t *oc_context, int deviceType)
 {
+	int i = 0;
 	oc_device_list_t *devices;
 	switch(deviceType) {
 		case 0:
@@ -32,19 +33,20 @@ void oc_cli_print_devices(oc_context_t *oc_context, int deviceType)
 		printf("error: devices not found\n");
 		return;
 	}
-	int i;
 	for(i=0;i<devices->count;i++)
 	{
 		oc_device_t *device = devices->list[i];
 		printf("device: name='%s', id='%s'\n", device->name, device->id);
 	}
+
 	oc_device_list_destroy(devices);
 }
 
 int main(int argc, char *argv[]) 
 {
+	oc_context_t *oc_context;
 	printf("OpenCapture Library 0.1 Console\n");
-	oc_context_t *oc_context = oc_context_create();
+	oc_context = oc_context_create();
 	if (argc > 1) 
 	{
 		char *opt = argv[1];
@@ -63,7 +65,7 @@ int main(int argc, char *argv[])
 				printf("error:\tfor monitor video need parameter: device_id\n");
 				return -1;
 			}
-			oc_cli_montior_video(argv[2]);
+			oc_cli_monitor_video(argv[2]);
 		}
 		else 
 			printf("Unknown option: %s\n, try read help (opencapture --help)", opt);
