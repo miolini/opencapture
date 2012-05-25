@@ -10,3 +10,4 @@ builders/qmake/Makefile
 xcuserdata
 Debug
 Release
+.DS_Store
