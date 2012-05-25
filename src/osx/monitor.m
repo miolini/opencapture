@@ -21,42 +21,10 @@ int count = 0;
 
 OCDisplay *display;
 
-
-float clamp(float value, float min, float max) 
-{
-	if (value > max) return max;
-	else if (value < min) return min;
-	else return value;
-}
-
-typedef unsigned char uchar;
-
-void convert_yuv442_2_rgb24(const unsigned char* source, unsigned char* destination, unsigned long width, unsigned long height)
-{
-	unsigned long i, c;
-    for(i = 0, c = 0; i < width * height * 2; i += 4, c += 6)
-    {
-		int y1 = (source[i] - 16);
-		int y2 = (source[i+2] - 16) * 298;
-		int u = source[i+1] - 128;
-		int v = source[i+3] - 128;
-    
-		//destination[c+2] = (uchar) clamp((y1 + 709 * u + 128) >> 8, 0, 255);
-		//destination[c+1] = (uchar) clamp((y1 + 250 * u - 208 * v + 128) >> 8, 0, 255);
-		//destination[c+0] = (uchar) clamp((400 * y1 - 116 * v + 128) >> 8, 0, 255);
-        
-        destination[c] = destination[c+1] = destination[c+2] = clamp(y1, 0 , 255);
-
-		//destination[c+3] = (uchar) clamp((y2 + 409 * u + 128) >> 8, 0, 255);
-		//destination[c+4] = (uchar) clamp((y2 - 100 * v - 208 * u + 128) >> 8, 0, 255);
-		//destination[c+5] = (uchar) clamp((y2 + 516 * v + 128) >> 8, 0, 255);
-    }
-}
-
 void video_callback(oc_context_t *context, int width, int height, char *data) 
 {
 	unsigned char *data2 = malloc(width*height*3);
-	convert_yuv442_2_rgb24((const unsigned char*) data, data2, width, height);
+	oc_convrert_yuv442_to_rgb24((const unsigned char*) data, data2, width, height);
 
 	NSImage *image = [[NSImage alloc] initWithSize:NSMakeSize(width,height)];
 	NSBitmapImageRep *imageRep;

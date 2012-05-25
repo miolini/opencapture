@@ -38,4 +38,9 @@ void oc_device_list_destroy(oc_device_list_t *device);
 
 void oc_start(oc_context_t *context, oc_device_t *videoInput, OC_CALLBACK(videoCallback), oc_device_t *audioInput);
 
+#define CLAMP(value) value > 255 ? 255 : (value < 0 ? 0 : value) 
+void oc_convrert_yuv442_to_rgb24(const unsigned char* source, unsigned char* destination, 
+                                 unsigned long width, unsigned long height);
+
+
 #endif
