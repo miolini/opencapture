@@ -5,9 +5,14 @@ typedef void oc_context_t;
 
 typedef struct
 {
+<<<<<<< HEAD
 	const char *id;
 	const char *name;
     int type;
+=======
+	char *id;
+	char *name;
+>>>>>>> 2c66d3723742b31a721e14cc41b2587236ccd766
 	void *native;
 } oc_device_t;
 

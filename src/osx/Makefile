@@ -10,9 +10,9 @@ core:
 common:
 	$(CC) $(OPTS) -c -fPIC osx.m -o osx.o
 	$(CC) $(OPTS) -c -fPIC monitor.m -o monitor.o
-	$(CC) $(OSX_OPTS) -dynamiclib ../core/core.o osx.o -o libopencapture.dylib
+	$(CC) $(OSX_OPTS) -dynamiclib osx.o ../core/core.o -o libopencapture.dylib
 	ar rcs opencapture.a ../core/core.o osx.o
-	$(CC) $(OSX_OPTS) ../core/cli.o ../core/core.o osx.o monitor.o -o opencapture
+	$(CC) $(OSX_OPTS) ../cli/cli.o ../core/core.o osx.o monitor.o -o opencapture
 
 clean:
 	rm -f *.o
