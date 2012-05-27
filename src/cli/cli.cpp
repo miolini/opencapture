@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include <opencapture.h>
 #include "cli.h"
 #include <string.h>
-
+	
 void oc_cli_print_help()
 {
 	printf("\t--help\n\t\tHelp information\n");
@@ -42,7 +41,7 @@ void oc_cli_print_devices(oc_context_t *oc_context, int deviceType)
 	oc_device_list_destroy(devices);
 }
 
-int main(int argc, char *argv[]) 
+int main(int argc, char **argv) 
 {
 	oc_context_t *oc_context;
 	printf("OpenCapture Library 0.1 Console\n");
@@ -65,7 +64,7 @@ int main(int argc, char *argv[])
 				printf("error:\tfor monitor video need parameter: device_id\n");
 				return -1;
 			}
-			oc_cli_monitor_video(argv[2]);
+			//oc_cli_monitor_video(argv[2]);
 		}
 		else 
 			printf("Unknown option: %s\n, try read help (opencapture --help)", opt);
