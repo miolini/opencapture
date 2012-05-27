@@ -2,6 +2,7 @@
 #define OC_WIN32_H
 
 #include "../../include/opencapture.h"
+#include "../core/core.h"
 
 typedef struct {
 	int field;	

@@ -43,12 +43,14 @@ HRESULT EnumerateDevices(REFGUID category, IEnumMoniker **ppEnum)
  }
  return hr;
 }
+ 
 
-
-void DisplayDeviceInformation(IEnumMoniker *pEnum)
+void DisplayDeviceInformation(IEnumMoniker *pEnum, oc_device_list_t *deviceList)
 {
     IMoniker *pMoniker = NULL;
- 
+	oc_device_t *device = (oc_device_t*) malloc(sizeof(oc_device_t));
+	device->id = (char*) malloc(sizeof(char) * 256);
+	device->name = (char*) malloc(sizeof(char) * 256);
     while (pEnum->Next(1, &pMoniker, NULL) == S_OK)
     {
         IPropertyBag *pPropBag;
@@ -59,49 +61,47 @@ void DisplayDeviceInformation(IEnumMoniker *pEnum)
             pMoniker->Release();
             continue;  
         } 
- 
         VARIANT var;
         VariantInit(&var);
- 
-        // Get description or friendly name.
-        hr = pPropBag->Read(L"Description", &var, 0);
+        
+		hr = pPropBag->Read(L"Description", &var, 0);
         if (FAILED(hr))
         {
             hr = pPropBag->Read(L"FriendlyName", &var, 0);
         }
         if (SUCCEEDED(hr))
         {
-            printf("%S\n", var.bstrVal);
+			sprintf(device->name, "%S", var.bstrVal);
             VariantClear(&var); 
         }
+		
  
-        hr = pPropBag->Write(L"FriendlyName", &var);
- 
-        // WaveInID applies only to audio capture devices.
         hr = pPropBag->Read(L"WaveInID", &var, 0);
         if (SUCCEEDED(hr))
         {
-            printf("WaveIn ID: %d\n", var.lVal);
+			sprintf(device->id, "audio_in_%d", var.iVal);
+			sprintf(device->name, "audioi_in_%d", var.iVal);
             VariantClear(&var); 
         }
- 
-        hr = pPropBag->Read(L"DevicePath", &var, 0);
-        if (SUCCEEDED(hr))
-        {
-            // The device path is not intended for display.
-            printf("Device path: %S\n", var.bstrVal);
-            VariantClear(&var); 
-        }
- 
+		else {
+			hr = pPropBag->Read(L"DevicePath", &var, 0);
+			if (SUCCEEDED(hr))
+			{
+				sprintf(device->id, "%S", var.bstrVal);
+				VariantClear(&var); 
+			}
+		}
         pPropBag->Release();
         pMoniker->Release();
     }
+	oc_device_list_insert(deviceList, device);
 }
 
 
 oc_device_list_t* oc_device_list_by_type(oc_context_t *_context, int type)
 {
 	oc_device_list_t *deviceList = (oc_device_list_t*) malloc(sizeof(oc_device_list_t));
+	deviceList->list = (oc_device_t**) malloc(sizeof(oc_device_t));
 	deviceList->count = 0;
 	HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
     if (SUCCEEDED(hr))
@@ -113,7 +113,7 @@ oc_device_list_t* oc_device_list_by_type(oc_context_t *_context, int type)
 			hr = EnumerateDevices(CLSID_VideoInputDeviceCategory, &pEnum);
 			if (SUCCEEDED(hr))
 			{
-				DisplayDeviceInformation(pEnum);
+				DisplayDeviceInformation(pEnum, deviceList);
 				pEnum->Release();
 			}
 		}
@@ -122,7 +122,7 @@ oc_device_list_t* oc_device_list_by_type(oc_context_t *_context, int type)
 			hr = EnumerateDevices(CLSID_AudioInputDeviceCategory, &pEnum);
 			if (SUCCEEDED(hr))
 			{
-				DisplayDeviceInformation(pEnum);
+				DisplayDeviceInformation(pEnum, deviceList);
 				pEnum->Release();
 			}
 		}

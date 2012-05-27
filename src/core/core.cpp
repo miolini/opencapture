@@ -1,5 +1,6 @@
 #include "core.h"
 #include <string.h>
+#include <stdlib.h>
 
 oc_device_list_t* oc_device_list(oc_context_t *_context)
 {
@@ -14,6 +15,19 @@ oc_device_list_t* oc_device_list_video(oc_context_t *_context)
 oc_device_list_t* oc_device_list_audio(oc_context_t *_context)
 {
 	return oc_device_list_by_type(_context, 2);
+}
+
+void oc_device_list_insert(oc_device_list_t *deviceList, oc_device_t *device)
+{
+	int i;
+	oc_device_t **deviceListNew = (oc_device_t**) malloc(sizeof(oc_device_t) * (deviceList->count + 1));
+	for(i=0;i<deviceList->count;i++) {
+		deviceListNew[i] = deviceList->list[i];
+	}
+	free(deviceList->list);
+	deviceListNew[i] = device;
+	deviceList->list = deviceListNew;
+	deviceList->count++;
 }
 
 int oc_device_find_by_id(oc_context_t *context, const char *id, oc_device_t **device)
