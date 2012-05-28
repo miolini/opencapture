@@ -1,6 +1,7 @@
 #import <Cocoa/Cocoa.h>
 #import <QTKit/QTKit.h>
 #import <opencapture.h>
+#import "../core/core.h"
 
 @interface OpenCapture : NSObject {
 	QTCaptureSession            *captureSession;
@@ -29,6 +30,3 @@ typedef struct {
 	NSAutoreleasePool *pool;
 	OpenCapture *openCapture;
 } oc_osx_context_t;
-
-oc_device_list_t* oc_device_list_all(oc_context_t *_context, int type);
-void oc_start(oc_context_t *context, oc_device_t *video, OC_CALLBACK(videoCallback), oc_device_t *audio);

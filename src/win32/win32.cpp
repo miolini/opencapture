@@ -1,4 +1,7 @@
 #include "win32.h"
+#include "../../include/opencapture.h"
+#include "../core/core.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
