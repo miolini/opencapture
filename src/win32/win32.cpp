@@ -14,6 +14,7 @@
 
 void oc_cli_monitor_video(const char *device_id)
 {
+    // Not implemented yet
 }
 
 oc_context_t* oc_context_create()
