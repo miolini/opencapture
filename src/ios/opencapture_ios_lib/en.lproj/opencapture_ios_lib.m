@@ -18,7 +18,6 @@
 
 - (void)startCapture
 {
-	BOOL success = NO;
     NSError *error;
 	NSLog(@"start capture");
     captureSession = [[AVCaptureSession alloc] init]; 
