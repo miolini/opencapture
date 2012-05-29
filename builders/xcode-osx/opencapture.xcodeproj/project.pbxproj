@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		2815ADFF156F3C14000C7DF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2815ADFE156F3C14000C7DF4 /* Foundation.framework */; };
 		2815AE06156F3C14000C7DF4 /* opencapture.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2815AE05156F3C14000C7DF4 /* opencapture.1 */; };
-		2815AE15156F3C51000C7DF4 /* cli.c in Sources */ = {isa = PBXBuildFile; fileRef = 2815AE12156F3C51000C7DF4 /* cli.c */; };
 		2815AE16156F3C51000C7DF4 /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = 2815AE14156F3C51000C7DF4 /* core.c */; };
 		2815AE1B156F3C69000C7DF4 /* monitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2815AE18156F3C69000C7DF4 /* monitor.m */; };
 		2815AE1C156F3C69000C7DF4 /* osx.m in Sources */ = {isa = PBXBuildFile; fileRef = 2815AE1A156F3C69000C7DF4 /* osx.m */; };
 		2815AE20156F3CE0000C7DF4 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2815AE1F156F3CE0000C7DF4 /* QTKit.framework */; };
 		2815AE22156F3D04000C7DF4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2815AE21156F3D04000C7DF4 /* Cocoa.framework */; };
 		2815AE24156F3D0E000C7DF4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2815AE23156F3D0E000C7DF4 /* CoreVideo.framework */; };
+		28F62A25157501480037CB66 /* cli.c in Sources */ = {isa = PBXBuildFile; fileRef = 28F62A23157501480037CB66 /* cli.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,8 +36,6 @@
 		2815ADFE156F3C14000C7DF4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2815AE04156F3C14000C7DF4 /* opencapture-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "opencapture-Prefix.pch"; sourceTree = "<group>"; };
 		2815AE05156F3C14000C7DF4 /* opencapture.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = opencapture.1; sourceTree = "<group>"; };
-		2815AE12156F3C51000C7DF4 /* cli.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cli.c; path = ../../../src/core/cli.c; sourceTree = "<group>"; };
-		2815AE13156F3C51000C7DF4 /* cli.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cli.h; path = ../../../src/core/cli.h; sourceTree = "<group>"; };
 		2815AE14156F3C51000C7DF4 /* core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = core.c; path = ../../../src/core/core.c; sourceTree = "<group>"; };
 		2815AE18156F3C69000C7DF4 /* monitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = monitor.m; path = ../../../src/osx/monitor.m; sourceTree = "<group>"; };
 		2815AE19156F3C69000C7DF4 /* osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = osx.h; path = ../../../src/osx/osx.h; sourceTree = "<group>"; };
@@ -47,6 +45,8 @@
 		2815AE21156F3D04000C7DF4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		2815AE23156F3D0E000C7DF4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		2815AE26156F48F6000C7DF4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../../../README.md; sourceTree = "<group>"; };
+		28F62A23157501480037CB66 /* cli.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cli.c; path = ../../../src/cli/cli.c; sourceTree = "<group>"; };
+		28F62A24157501480037CB66 /* cli.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cli.h; path = ../../../src/cli/cli.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +115,6 @@
 		2815AE11156F3C41000C7DF4 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				2815AE12156F3C51000C7DF4 /* cli.c */,
-				2815AE13156F3C51000C7DF4 /* cli.h */,
 				2815AE14156F3C51000C7DF4 /* core.c */,
 			);
 			name = core;
@@ -143,10 +141,20 @@
 		2815AE25156F4696000C7DF4 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				28F62A221575013C0037CB66 /* cli */,
 				2815AE11156F3C41000C7DF4 /* core */,
 				2815AE17156F3C54000C7DF4 /* osx */,
 			);
 			name = src;
+			sourceTree = "<group>";
+		};
+		28F62A221575013C0037CB66 /* cli */ = {
+			isa = PBXGroup;
+			children = (
+				28F62A23157501480037CB66 /* cli.c */,
+				28F62A24157501480037CB66 /* cli.h */,
+			);
+			name = cli;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,10 +207,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2815AE15156F3C51000C7DF4 /* cli.c in Sources */,
 				2815AE16156F3C51000C7DF4 /* core.c in Sources */,
 				2815AE1B156F3C69000C7DF4 /* monitor.m in Sources */,
 				2815AE1C156F3C69000C7DF4 /* osx.m in Sources */,
+				28F62A25157501480037CB66 /* cli.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
