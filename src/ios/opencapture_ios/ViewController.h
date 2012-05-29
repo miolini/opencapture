@@ -11,8 +11,12 @@
 
 @interface ViewController : UIViewController {
     oc_context_t *captureContext;
+    UIImageView *imageView;
 }
 
 @property(nonatomic) oc_context_t *captureContext;
+@property(retain,nonatomic) UIImageView *imageView;
+
+void video_callback(oc_context_t *context, int width, int height, char *data);
 
 @end

@@ -15,7 +15,7 @@
 @synthesize context;
 @synthesize videoCallback;
 
-/*
+
 - (void)startCapture
 {
 	BOOL success = NO;
@@ -23,44 +23,42 @@
 	NSLog(@"start capture");
     captureSession = [[AVCaptureSession alloc] init]; 
     if(videoDevice) {
-        success = [videoDevice open:&error];
-        if(!success) {
-			NSLog(@"can't open video device");
-			return;
+        videoInput = [[AVCaptureDeviceInput alloc] initWithDevice:videoDevice error:&error];
+        if (videoInput == nil) {
+            NSLog(@"Error to create camera capture:%@",error);
+            return;
         }
-        videoInput = [[QTCaptureDeviceInput alloc] initWithDevice:videoDevice];
-        success = [captureSession addInput:videoInput error:&error];
-        if(!success) {
-			NSLog(@"can't add input tot capture session");
-			return;
-        }
-		QTCaptureDecompressedVideoOutput *videoOutput = [[QTCaptureDecompressedVideoOutput alloc] init];
-		[videoOutput setDelegate: self];
-		success = [captureSession addOutput:videoOutput error:&error];
-        if(!success) {
-			NSLog(@"can't add output for capture session");
-			return;
-        }
+		AVCaptureVideoDataOutput *videoOutput = [[AVCaptureVideoDataOutput alloc] init];
+        dispatch_queue_t captureQueue=dispatch_queue_create("catpureQueue", NULL);
+        [videoOutput setSampleBufferDelegate:self queue:captureQueue];
+        videoOutput.videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA], (id)kCVPixelBufferPixelFormatTypeKey,
+                                     nil];
+        [captureSession setSessionPreset:AVCaptureSessionPresetHigh];
+        [captureSession addInput:videoInput];
+        [captureSession addOutput:videoOutput];
     } 
 	[captureSession startRunning];
 	printf("capture session runned\n");
 }
-*/
 
-/*
+
+
 - (void)captureOutput:(AVCaptureOutput *)captureOutput 
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection;
 {
 	if (self->videoCallback == NULL) return;
-//	int w = CVPixelBufferGetWidth(videoFrame);
-//	int h = CVPixelBufferGetHeight(videoFrame);
-	char *data = (char *) [sampleBuffer bytesForAllSamples];
-    NSLog(@"new frame %dx%d %d (%@)", w, h, [sampleBuffer lengthForAllSamples], 
-          [[sampleBuffer formatDescription] formatType]);
-	//self->videoCallback(context, w, h, data);
+
+    
+    CVImageBufferRef cvimgRef = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CVPixelBufferLockBaseAddress(cvimgRef,0);
+    int width=CVPixelBufferGetWidth(cvimgRef);
+    int height=CVPixelBufferGetHeight(cvimgRef);
+    char *buf = (char *) CVPixelBufferGetBaseAddress(cvimgRef);
+    NSLog(@"new frame %dx%d", width, height);
+    self->videoCallback(context, width, height, buf);
 }
-*/
+
 
 @end
 

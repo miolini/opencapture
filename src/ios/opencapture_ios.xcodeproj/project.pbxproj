@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		28612DBF1574EBA2009E8417 /* libopencapture_ios_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28612DB91574EB4D009E8417 /* libopencapture_ios_lib.a */; };
 		28612DC11574EBCC009E8417 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28612DC01574EBCC009E8417 /* AVFoundation.framework */; };
+		28612DC91574F353009E8417 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28612DC81574F353009E8417 /* CoreMedia.framework */; };
+		28612DCB1574F373009E8417 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28612DCA1574F373009E8417 /* CoreVideo.framework */; };
 		289C6D6D1574CF780028A3CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 289C6D6C1574CF780028A3CE /* UIKit.framework */; };
 		289C6D6F1574CF780028A3CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 289C6D6E1574CF780028A3CE /* Foundation.framework */; };
 		289C6D711574CF780028A3CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 289C6D701574CF780028A3CE /* CoreGraphics.framework */; };
@@ -40,6 +42,8 @@
 /* Begin PBXFileReference section */
 		28612DB41574EB4D009E8417 /* opencapture_ios_lib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = opencapture_ios_lib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		28612DC01574EBCC009E8417 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		28612DC81574F353009E8417 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		28612DCA1574F373009E8417 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		289C6D681574CF780028A3CE /* opencapture_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = opencapture_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		289C6D6C1574CF780028A3CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		289C6D6E1574CF780028A3CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -62,6 +66,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28612DCB1574F373009E8417 /* CoreVideo.framework in Frameworks */,
+				28612DC91574F353009E8417 /* CoreMedia.framework in Frameworks */,
 				28612DC11574EBCC009E8417 /* AVFoundation.framework in Frameworks */,
 				28612DBF1574EBA2009E8417 /* libopencapture_ios_lib.a in Frameworks */,
 				289C6D6D1574CF780028A3CE /* UIKit.framework in Frameworks */,
@@ -84,6 +90,8 @@
 		289C6D5D1574CF780028A3CE = {
 			isa = PBXGroup;
 			children = (
+				28612DCA1574F373009E8417 /* CoreVideo.framework */,
+				28612DC81574F353009E8417 /* CoreMedia.framework */,
 				289C6D721574CF780028A3CE /* opencapture_ios */,
 				289C6D6B1574CF780028A3CE /* Frameworks */,
 				289C6D691574CF780028A3CE /* Products */,

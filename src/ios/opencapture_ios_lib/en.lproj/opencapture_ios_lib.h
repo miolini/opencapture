@@ -9,14 +9,13 @@
 #ifndef opencapture_ios_lib_h
 #define opencapture_ios_lib_h
 
-#import "../../core/core.h"
+#import "../../../core/core.h"
 #import <opencapture.h>
 #import <CoreMedia/CoreMedia.h>
 #import <AVFoundation/AVFoundation.h>
 
 @interface OpenCapture : NSObject {
 	AVCaptureSession            *captureSession;
-	AVCaptureMovieFileOutput    *movieOutput;
 	AVCaptureDeviceInput        *videoInput;
 	AVCaptureDevice 			*videoDevice;
 	AVCaptureDeviceInput        *audioInput;
