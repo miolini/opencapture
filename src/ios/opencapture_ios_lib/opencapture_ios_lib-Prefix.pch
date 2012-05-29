@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'opencapture_ios_lib' target in the 'opencapture_ios_lib' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
