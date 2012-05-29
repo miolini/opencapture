@@ -3,7 +3,7 @@
 //  opencapture_ios
 //
 //  Created by Artem Miolini (miolini@gmail.com) on 29.05.12.
-//  Copyright (c) 2012 Artem Miolini (miolini@gmail.com. All rights reserved.
+//  Copyright (c) 2012 Artem Miolini (miolini@gmail.com). All rights reserved.
 //
 
 #import "ios.h"

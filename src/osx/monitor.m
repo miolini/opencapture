@@ -1,3 +1,11 @@
+//
+//  opencapture_ios.m
+//  opencapture_ios
+//
+//  Created by Artem Miolini (miolini@gmail.com) on 19.05.12.
+//  Copyright (c) 2012 Artem Miolini (miolini@gmail.com). All rights reserved.
+//
+
 #import <stdio.h>
 #import <stdlib.h>
 #import <opencapture.h>

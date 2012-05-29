@@ -1,9 +1,9 @@
 //
-//  opencapture_ios.h
+//  opencapture_ios.m
 //  opencapture_ios
 //
-//  Created by Mynumber on 29.05.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Artem Miolini (miolini@gmail.com) on 29.05.12.
+//  Copyright (c) 2012 Artem Miolini (miolini@gmail.com). All rights reserved.
 //
 
 #ifndef opencapture_ios_lib_h
