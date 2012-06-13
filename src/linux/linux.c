@@ -10,10 +10,48 @@
 #include <linux/videodev2.h>
 #include "linux.h"
 
+int context_open_device(const char *name)
+{
+	int ret = 0;
+	return ret;
+}
+
+int context_init_device(int fd)
+{
+	int ret = 0;
+	return ret;
+}
+
+int context_start_capturing(int fd)
+{
+	int ret = 0;
+	return ret;
+}
+
+int context_stop_capturing(int fd)
+{
+	int ret = 0;
+	return ret;
+}
+
+int context_uninit_device(void)
+{
+	int ret = 0;
+	return ret;
+}
+
+int context_close_device(int fd)
+{
+	int ret = 0;
+	return ret;
+}
+
 oc_context_t* oc_context_create()
 {
-    oc_context_linux_t *context = (oc_context_linux_t*) malloc(sizeof(oc_context_linux_t));
-    return context;
+	oc_context_linux_t *context = (oc_context_linux_t*) malloc(sizeof(oc_context_linux_t));
+	if (context)
+		OC_INIT_CONTEXT(context);
+	return context;
 }
 
 void oc_context_destroy(oc_context_t *_context)
@@ -64,8 +102,8 @@ oc_device_list_t* oc_device_list_by_type(oc_context_t *_context, int type)
 
 	deviceList->count = 0;
 
-	check_devices(VIDEODEV_PFX, deviceList);
-	check_devices(AUDIODEV_PFX, deviceList);
+	if (type & OC_VIDEODEV_TYPE) check_devices(VIDEODEV_PFX, deviceList);
+	if (type & OC_AUDIODEV_TYPE) check_devices(AUDIODEV_PFX, deviceList);
 
 
 	return deviceList;
