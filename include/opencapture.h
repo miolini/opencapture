@@ -5,8 +5,13 @@ typedef void oc_context_t;
 
 typedef struct
 {
+#ifdef _LINUX_DEV
+	char *id;
+	char *name;
+#else
 	const char *id;
 	const char *name;
+#endif
 	void *native;
 } oc_device_t;
 

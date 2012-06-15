@@ -10,6 +10,11 @@
 #include <linux/videodev2.h>
 #include "linux.h"
 
+void err_output()
+{
+
+}
+
 int is_capture_device(int fd)
 {
         int ret = 0;
@@ -74,6 +79,9 @@ void oc_context_destroy(oc_context_t *_context)
  * @dev_pfx  - video(audio) device path prefix, i.e. "/dev/video"
  * @dev_list - pointer to device list
  */
+
+/*TODO: ERRORS CONTROL!!! */
+
 void check_devices(const char *dev_pfx, oc_device_list_t *dev_list)
 {
 	int i;
@@ -85,15 +93,19 @@ void check_devices(const char *dev_pfx, oc_device_list_t *dev_list)
 		if (stat(devname, &stat_buf) == 0) {	//File exist
 			if (S_ISCHR(stat_buf.st_mode) &&	//char device
 					major(stat_buf.st_rdev) == V4L_DEV_MAJOR) {	//v4l device
-				dev_list->count++;
-				dev_list->list = (oc_device_t **)realloc(dev_list->list,
-									(i+1)*sizeof(oc_device_t));
-				dev_list->list[i] =  malloc(sizeof(oc_device_t));
-				dev_list->list[i]->name = malloc(DEVNAME_LEN);
-				//or malloc(strlen(devname)+1)
-				memcpy(dev_list->list[i]->name, devname, DEVNAME_LEN);
-				//dev_list->list[i]->id?
-				//dev_list->list[i]->native?
+				if ((dev_list->list = (oc_device_t **)realloc(dev_list->list,
+					(i+1)*sizeof(oc_device_t))) != NULL) {
+
+					if ((dev_list->list[i] =  malloc(sizeof(oc_device_t))) != NULL)
+						dev_list->list[i]->name = malloc(DEVNAME_LEN);
+
+
+					memcpy(dev_list->list[i]->name, devname, DEVNAME_LEN);
+					dev_list->count++;
+				} else {
+					fprintf(stderr, "Error: cannot allocate memory.\n");
+					return;
+				}
 			}
 		} else break;
 	}
