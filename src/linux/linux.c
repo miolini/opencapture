@@ -10,9 +10,19 @@
 #include <linux/videodev2.h>
 #include "linux.h"
 
+int is_capture_device(int fd)
+{
+        int ret = 0;
+        struct v4l2_capability cap;
+        if (ioctl(fd, VIDIOC_QUERYCAP, &cap) == 0)
+                if (cap.capabilities & V4L2_CAP_VIDEO_CAPTURE)
+                        ret = 1;
+        return ret;
+}
+
 int context_open_device(const char *name)
 {
-	int ret = 0;
+	int ret = open(name, O_RDWR | O_NONBLOCK);
 	return ret;
 }
 
@@ -60,26 +70,21 @@ void oc_context_destroy(oc_context_t *_context)
     free(context);
 }
 
-int is_capture_device(int fd)
+/* check_devices:
+ * @dev_pfx  - video(audio) device path prefix, i.e. "/dev/video"
+ * @dev_list - pointer to device list
+ */
+void check_devices(const char *dev_pfx, oc_device_list_t *dev_list)
 {
-	int ret = 0;
-	struct v4l2_capability cap;
-	if (ioctl(fd, VIDIOC_QUERYCAP, &cap) == 0)
-		if (cap.capabilities & V4L2_CAP_VIDEO_CAPTURE)
-			ret = 1;
-
-	return ret;
-}
-
-int check_devices(const char *dev_pfx, oc_device_list_t *dev_list)
-{
-	int ret, i;
+	int i;
 	char devname[DEVNAME_LEN];
-	
+	struct stat stat_buf;
+
 	for (i=0; i < MAXDEV; i++) {
 		snprintf(devname, DEVNAME_LEN-1, "%s%d", dev_pfx, i);
-		if ((ret = open(devname, O_RDWR)) > 0) {
-			if (is_capture_device(ret)) {
+		if (stat(devname, &stat_buf) == 0) {	//File exist
+			if (S_ISCHR(stat_buf.st_mode) &&	//char device
+					major(stat_buf.st_rdev) == V4L_DEV_MAJOR) {	//v4l device
 				dev_list->count++;
 				dev_list->list = (oc_device_t **)realloc(dev_list->list,
 									(i+1)*sizeof(oc_device_t));
@@ -90,10 +95,8 @@ int check_devices(const char *dev_pfx, oc_device_list_t *dev_list)
 				//dev_list->list[i]->id?
 				//dev_list->list[i]->native?
 			}
-			close(ret);
-		} else return ret;
+		} else break;
 	}
-	return ret;
 }
 
 oc_device_list_t* oc_device_list_by_type(oc_context_t *_context, int type)

@@ -4,7 +4,9 @@
 #define VIDEODEV_PFX    "/dev/video"
 #define AUDIODEV_PFX    "/dev/radio"
 #define DEVNAME_LEN     16
-#define MAXDEV		64      	//See ~linux/Documentation/devices.txt
+#define MAXDEV		9
+#define	V4L_DEV_MAJOR	81		//See ~linux/Documentation/devices.txt
+
 
 #define OC_VIDEODEV_TYPE	1
 #define OC_AUDIODEV_TYPE	(1 << 1)
